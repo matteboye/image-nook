@@ -5,40 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Image Nook</title>
 <meta name="description" content="Pick a style, say what to draw, copy a ready-made prompt for Gemini, ChatGPT or any AI image tool.">
+<meta name="theme-color" content="#1B2A6B">
 <link rel="icon" type="image/png" href="icons/icon-48.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,500..900,100;1,9..144,500..900,100&family=Nunito:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- Decorative floating sparkles in the page corners -->
-<svg class="deco-floater f1" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
-  <path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="currentColor" stroke="#3d3530" stroke-width="1.5"/>
-</svg>
-<svg class="deco-floater f2" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-  <path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="currentColor" stroke="#3d3530" stroke-width="1.5"/>
-</svg>
-
 <div class="wrap">
 
   <header>
-    <div class="header-left">
-      <div class="brand-tag">
-        <svg class="mascot" viewBox="0 0 1665.88 1284" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path fill="#f7f2e8" d="M1374.3,395.05c4.08-15.96,6.25-32.68,6.25-49.91,0-111.03-90-201.03-201.03-201.03-28.89,0-56.35,6.11-81.17,17.08C1019.38,62.92,898.21,0,762.33,0c-212.04,0-388.31,153.17-424.2,354.9-5.32-.26-10.67-.4-16.05-.4C144.2,354.51,0,498.71,0,676.59s135.34,313.05,305.53,321.66c26.02,161.99,166.42,285.75,335.75,285.75,122.14,0,229.23-64.4,289.2-161.09,42.76,30.64,95.15,48.69,151.77,48.69,113.98,0,210.87-73.12,246.36-175,11.6,1.35,23.4,2.07,35.37,2.07,166.74,0,301.91-135.17,301.91-301.91,0-163.28-129.63-296.27-291.58-301.71Z"/>
-          <path fill="#e7e1d5" d="M1307.13,287.55c0-48.75-18.18-93.25-48.12-127.11,71.49,30.81,121.54,101.91,121.54,184.7,0,1.33.13,23.57-6.25,49.91,0,0-59.17-1.49-84.12,6.34,13.73-49.18,16.95-97.39,16.95-113.84Z"/>
-          <path fill="#e7e1d5" d="M1665.88,696.76c0,166.74-135.17,301.91-301.9,301.91-11.97,0-23.77-.72-35.37-2.08-35.49,101.89-132.38,175.01-246.36,175.01-56.62,0-109.01-18.05-151.77-48.69-59.97,96.69-167.06,161.09-289.2,161.09-169.33,0-309.74-123.76-335.76-285.75C138.65,989.8,5.28,854.33.16,686.6c34.72,124.87,146.26,217.76,280.51,224.56,24.84,154.67,158.9,272.84,320.58,272.84,116.63,0,218.88-61.49,276.14-153.81,40.83,29.25,90.85,46.48,144.91,46.48,108.84,0,201.35-69.81,235.24-167.09,11.08,1.29,22.34,1.98,33.77,1.98,159.2,0,288.27-129.07,288.27-288.27,0-74.51-28.27-142.42-74.67-193.57,95.74,50.62,160.97,151.21,160.97,267.04Z"/>
-        </svg>
-        <h1 class="brand-text">
-          <span class="brand-line-1">Image</span>
-          <span class="brand-line-2">Nook</span>
-        </h1>
-      </div>
-      <p class="eyebrow">Pick a style · say what to draw · copy</p>
-    </div>
-    <div class="meta" id="meta" aria-live="polite"></div>
+    <h1 class="wordmark">Image Nook</h1>
+    <p class="strapline">Pick a style, say what to draw, copy the prompt.</p>
   </header>
 
   <!-- STEP 1 -->
@@ -53,11 +33,12 @@
     <!-- STEP 2 -->
     <section class="make-col" id="make" aria-labelledby="step2">
       <h2 class="step-title" id="step2"><span class="step-num">2</span> Say what to draw</h2>
+      <p class="meta" id="meta" aria-live="polite"></p>
 
       <div class="panel">
         <div class="field">
           <label for="subject">What should it draw?</label>
-          <textarea id="subject" rows="2" autocomplete="off"></textarea>
+          <textarea id="subject" rows="1" autocomplete="off"></textarea>
         </div>
 
         <div class="field" id="wordsField" hidden>
@@ -88,9 +69,9 @@
             <div class="tweak-foot">
               <div class="save-row">
                 <input type="text" id="recipeName" placeholder="Name this look, e.g. Moody riso" aria-label="Recipe name" maxlength="40">
-                <button type="button" class="btn small" id="saveRecipe">Save as recipe</button>
+                <button type="button" class="btn" id="saveRecipe">Save as recipe</button>
               </div>
-              <button type="button" class="btn small ghost" id="resetTweaks">Reset tweaks</button>
+              <button type="button" class="btn ghost" id="resetTweaks">Reset tweaks</button>
             </div>
           </div>
         </details>
@@ -102,16 +83,9 @@
       <h2 class="step-title" id="step3"><span class="step-num">3</span> Copy your prompt</h2>
 
       <div class="output-frame">
-        <svg class="output-sparkle tl" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="currentColor" stroke="#3d3530" stroke-width="1.5"/></svg>
-        <svg class="output-sparkle tr" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="currentColor" stroke="#3d3530" stroke-width="1.5"/></svg>
-        <svg class="output-sparkle br" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0 L14 10 L24 12 L14 14 L12 24 L10 14 L0 12 L10 10 Z" fill="currentColor" stroke="#3d3530" stroke-width="1.5"/></svg>
-
-        <div class="output-header">
-          <div class="format" role="group" aria-label="Prompt format">
-            <button type="button" class="format-btn" data-format="prose">Plain prompt</button>
-            <button type="button" class="format-btn" data-format="json">JSON</button>
-          </div>
-          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="format" role="group" aria-label="Prompt format">
+          <button type="button" class="format-btn" data-format="prose">Plain prompt</button>
+          <button type="button" class="format-btn" data-format="json">JSON</button>
         </div>
 
         <pre id="output" tabindex="0"></pre>
@@ -120,8 +94,8 @@
 
         <div class="actions">
           <button type="button" id="copyBtn">Copy</button>
-          <button type="button" class="secondary" data-open="https://gemini.google.com/app">Copy + open Gemini</button>
-          <button type="button" class="secondary" data-open="https://chatgpt.com/">Copy + open ChatGPT</button>
+          <button type="button" class="secondary" data-open="https://gemini.google.com/app">Copy and open Gemini</button>
+          <button type="button" class="secondary" data-open="https://chatgpt.com/">Copy and open ChatGPT</button>
         </div>
         <p class="output-note" id="outputNote"></p>
       </div>

@@ -12,7 +12,7 @@
 
 'use strict';
 
-const VERSION = '2.0.0';
+const VERSION = '2.1.0';
 const AUTO_TEXT = 'chosen to suit the subject';
 const NO_SUBJECT = '[YOUR SUBJECT]';
 const ASPECTS = ['1:1', '4:5', '3:4', '2:3', '9:16', '4:3', '3:2', '16:9'];
@@ -805,7 +805,8 @@ function renderTweaks() {
 
 function renderStylePanel() {
   const st = active();
-  $('meta').innerHTML = st.meta.map(m => `<div class="badge">${escapeHTML(m)}</div>`).join('');
+  const traits = st.meta.map(m => (/^(Ghibli|Toriyama|Y2K|Japan)/.test(m) ? m : lowerFirst(m)));
+  $('meta').innerHTML = `<strong>${escapeHTML(st.label)}</strong>: ${escapeHTML(traits.join(', '))}.`;
 
   const eg = FIELD_BY_ID[st.ids.subject];
   $('subject').placeholder = eg && eg.def ? `e.g. ${eg.def.charAt(0).toLowerCase() + eg.def.slice(1)}` : 'e.g. a sleepy fox curled in a teacup';
@@ -912,7 +913,12 @@ function init() {
   renderStylePanel();
   update();
 
-  $('subject').addEventListener('input', (e) => { state.subject = e.target.value; update(); });
+  // The subject box grows with what you type, so it never needs a scrollbar
+  const fitSubject = () => { const t = $('subject'); t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; };
+  $('subject').addEventListener('input', (e) => { state.subject = e.target.value; fitSubject(); update(); });
+  window.addEventListener('resize', fitSubject);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSubject);
+  fitSubject();
   $('subject').addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); copyFrom($('copyBtn')); }
   });
