@@ -738,6 +738,10 @@ function buildCosmicFolkJSON() {
   const motifs = checkedList('pc-motifs-group');
 
   const symmetry = getValue('pc-symmetry');
+
+  // Palette: a named colour set, or whatever was typed under Custom
+  const paletteKey = getValue('pc-palette');
+  const palette = COSMIC_PALETTES[paletteKey];
   const scale = getValue('pc-scale');
 
   // Typography: optional. Toggled off → the whole block is null so Gemini
@@ -805,13 +809,14 @@ function buildCosmicFolkJSON() {
         color: "near_black_or_deep_indigo",
         rule: "only_outline_key_silhouette_or_decorative_frame_never_everything"
       },
-      color_palette: {
-        strategy: "limited_base_plus_punchy_accents",
-        bases: ["dusty_pink", "lavender", "deep_violet", "midnight_black", "forest_green"],
-        accents: ["chartreuse_beam_green", "hot_magenta", "buttery_yellow", "tangerine_orange", "electric_cyan"],
-        contrast_rule: "high_contrast_shapes_with_clean_color_blocks",
-        avoid: ["muddy_browns", "realistic_skin_tones", "photographic_color_grading"]
-      },
+      color_palette: Object.assign(
+        { strategy: "limited_base_plus_punchy_accents" },
+        palette ? { bases: palette.bases, accents: palette.accents } : { custom_palette: paletteKey },
+        {
+          contrast_rule: "high_contrast_shapes_with_clean_color_blocks",
+          avoid: ["muddy_browns", "realistic_skin_tones", "photographic_color_grading"]
+        }
+      ),
       shading_and_light: {
         lighting: "dreamy_ambient_glow_not_realistic",
         shading: "two_tone_blocks_plus_soft_halation",

@@ -3596,6 +3596,44 @@ const NOOK_FIELDS = {
    "cph": "e.g. 5:7"
   },
   {
+   "id": "pc-palette",
+   "label": "Palette",
+   "kind": "select",
+   "section": "Colour",
+   "def": "original",
+   "cph": "e.g. teal, gold and cream with hot pink accents",
+   "options": [
+    {
+     "v": "original",
+     "l": "Original (pink, violet, neon)"
+    },
+    {
+     "v": "ocean",
+     "l": "Ocean (teal, navy, coral)"
+    },
+    {
+     "v": "forest",
+     "l": "Forest (moss, pine, mustard)"
+    },
+    {
+     "v": "sunset",
+     "l": "Sunset (orange, magenta, plum)"
+    },
+    {
+     "v": "moonlight",
+     "l": "Moonlight (midnight blue, silver)"
+    },
+    {
+     "v": "candy",
+     "l": "Candy (pink, mint, lemon)"
+    },
+    {
+     "v": "desert",
+     "l": "Desert (terracotta, sand, turquoise)"
+    }
+   ]
+  },
+  {
    "id": "pc-description",
    "label": "Subject Description",
    "kind": "text",

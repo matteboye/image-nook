@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Image Nook",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "Pick a style, say what to draw, copy a ready-made prompt for any AI image tool.",
   "action": {
     "default_title": "Open Image Nook",

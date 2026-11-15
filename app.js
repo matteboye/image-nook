@@ -12,7 +12,7 @@
 
 'use strict';
 
-const VERSION = '2.4.0';
+const VERSION = '2.5.0';
 const AUTO_TEXT = 'chosen to suit the subject';
 const NO_SUBJECT = '[YOUR SUBJECT]';
 const ASPECTS = ['1:1', '4:5', '3:4', '2:3', '9:16', '4:3', '3:2', '16:9'];
@@ -135,6 +135,23 @@ const NEW_FIELDS = {
 };
 
 const FIELDS = Object.assign({}, NOOK_FIELDS, NEW_FIELDS);
+
+// Colour sets for Psychadelic Cosmic Folk-Art: a limited base plus punchy accents.
+// "original" is the palette the style was written with.
+const COSMIC_PALETTES = {
+  original:  { bases: ['dusty_pink', 'lavender', 'deep_violet', 'midnight_black', 'forest_green'], accents: ['chartreuse_beam_green', 'hot_magenta', 'buttery_yellow', 'tangerine_orange', 'electric_cyan'] },
+  ocean:     { bases: ['deep_teal', 'sea_green', 'navy', 'midnight_black', 'pale_aqua'], accents: ['coral', 'gold', 'electric_cyan', 'pearl_white'] },
+  forest:    { bases: ['moss_green', 'fern_green', 'deep_pine', 'olive', 'cream'], accents: ['mustard_yellow', 'mushroom_red', 'lime', 'soft_orange'] },
+  sunset:    { bases: ['burnt_orange', 'magenta', 'deep_plum', 'dusky_rose', 'midnight_black'], accents: ['sun_yellow', 'hot_pink', 'tangerine', 'turquoise'] },
+  moonlight: { bases: ['midnight_blue', 'indigo', 'slate_violet', 'black', 'silver_grey'], accents: ['pale_gold', 'icy_blue', 'lilac', 'white'] },
+  candy:     { bases: ['bubblegum_pink', 'mint', 'lemon_yellow', 'sky_blue', 'cream'], accents: ['cherry_red', 'grape_purple', 'lime', 'tangerine'] },
+  desert:    { bases: ['terracotta', 'sand', 'dusty_sage', 'deep_maroon', 'midnight_blue'], accents: ['turquoise', 'sun_yellow', 'hot_coral', 'bone_white'] }
+};
+const listWords = (a) => a.map(w => w.replace(/_/g, ' ')).join(', ').replace(/, ([^,]*)$/, ' and $1');
+const cosmicPaletteText = (key) => {
+  const p = COSMIC_PALETTES[key];
+  return p ? `a limited base of ${listWords(p.bases)} with punchy accents of ${listWords(p.accents)}` : key;
+};
 
 // ------------------------------------------------------------
 // Style registry
@@ -262,11 +279,12 @@ const STYLES = [
     meta: ['Mid-century occult kitsch', 'Psychedelic candy neon', 'Flat poster clarity'],
     swatch: ['#3a1f5c', '#e7a6c5', '#b7e33b', '#ff3fa4', '#ffb347'],
     ids: { subject: 'pc-subject', aspect: 'pc-aspect' }, aspect: '2:3',
-    quick: ['pc-setting', 'pc-story-beat', 'pc-mode', 'pc-symmetry'],
-    always: ['pc-mode', 'pc-setting', 'pc-story-beat', 'pc-motifs-group', 'pc-symmetry', 'pc-scale'],
+    quick: ['pc-palette', 'pc-setting', 'pc-story-beat', 'pc-symmetry'],
+    always: ['pc-palette', 'pc-mode', 'pc-setting', 'pc-story-beat', 'pc-motifs-group', 'pc-symmetry', 'pc-scale'],
+    valueFor: { 'pc-palette': cosmicPaletteText },
     words: { text: 'pc-type-text', toggle: { id: 'pc-type-present', on: 'yes', off: 'no' }, fields: ['pc-type-style', 'pc-type-placement', 'pc-type-color'], ph: 'e.g. COSMIC LULLABY' },
     noun: 'Retro cosmic psychedelic gouache poster illustration',
-    look: 'Mid-century kitsch meets occult fairytale: chunky, simplified organic shapes with soft, slightly wobbly handmade edges and flat, bold colour blocks. A limited base of dusty pink, lavender, deep violet, midnight black and forest green with punchy candy-neon accents (chartreuse, hot magenta, buttery yellow, tangerine, electric cyan). Gouache and screenprint feel with fine speckle grain, chalky stipple shading, soft glowing halos and matte paper tooth. Minimal near-black or indigo linework on key silhouettes only. Flat, centred, poster-like composition with generous breathing room, 2 to 4 layers and minimal perspective.',
+    look: 'Mid-century kitsch meets occult fairytale: chunky, simplified organic shapes with soft, slightly wobbly handmade edges and flat, bold colour blocks in a limited palette with candy-bright accents. Gouache and screenprint feel with fine speckle grain, chalky stipple shading, soft glowing halos and matte paper tooth. Minimal near-black or indigo linework on key silhouettes only. Flat, centred, poster-like composition with generous breathing room, 2 to 4 layers and minimal perspective.',
     avoid: ['photorealism', '3D render or CGI', 'highly detailed textures', 'realistic lighting or depth of field', 'lens flare', 'ultra-sharp vector edges', 'busy background clutter', 'complex perspective', 'tiny fussy detail', 'metallic glossy finish'],
     build: buildCosmicFolkJSON
   },
