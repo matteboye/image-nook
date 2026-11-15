@@ -10,7 +10,8 @@
   --yellow: #ffc93c;
   --tint: #eef1fb;
   --line: #c9d0ea;
-  --radius: 4px;
+  --radius: 12px;
+  --radius-sm: 6px;
   --display: 'Bricolage Grotesque', 'Arial Black', system-ui, sans-serif;
   --body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
@@ -79,7 +80,7 @@ header {
   justify-content: center;
   background: var(--ink);
   color: var(--paper);
-  border-radius: var(--radius);
+  border-radius: 8px;
   flex-shrink: 0;
 }
 
@@ -97,7 +98,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
 /* ============ STYLE CARDS ============ */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 16px;
 }
 
@@ -120,15 +121,16 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
 
 .card-banner {
   display: block;
-  aspect-ratio: 900 / 234;
+  aspect-ratio: 1 / 1;
   border-bottom: 2px solid var(--ink);
+  border-radius: 10px 10px 0 0;
   overflow: hidden;
   background: var(--tint);
 }
 .card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .card-swatch { display: block; width: 100%; height: 100%; }
 
-.card-body { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px 12px; }
+.card-body { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px 12px; overflow-wrap: anywhere; }
 .card-name { font-family: var(--display); font-weight: 600; font-size: 16px; line-height: 1.2; }
 .card-tag { font-size: 13px; color: var(--ink-soft); }
 
@@ -141,7 +143,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
   right: 8px;
   background: var(--ink);
   color: var(--paper);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   font-size: 11px;
   font-weight: 700;
   padding: 1px 7px;
@@ -278,7 +280,7 @@ select {
 .ratio-ico {
   display: inline-block;
   background: var(--ink);
-  border-radius: 1px;
+  border-radius: 2px;
   flex-shrink: 0;
 }
 
@@ -311,7 +313,7 @@ select {
 .tweak-title { font-family: var(--display); font-size: 19px; font-weight: 800; letter-spacing: -0.02em; }
 .tweak-count {
   background: var(--yellow);
-  border-radius: 2px;
+  border-radius: var(--radius-sm);
   font-size: 13px;
   font-weight: 700;
   padding: 1px 8px;
@@ -418,7 +420,7 @@ pre.prose {
 .json-key { color: var(--red-deep); }
 .json-string { color: var(--ink); }
 pre.prose .json-key { font-weight: 700; }
-.missing { background: var(--yellow); font-weight: 700; border-radius: 2px; padding: 0 5px; }
+.missing { background: var(--yellow); font-weight: 700; border-radius: var(--radius-sm); padding: 0 5px; }
 
 .nudge { color: var(--red-deep); font-weight: 700; font-size: 15px; }
 .nudge[hidden] { display: none; }
@@ -471,8 +473,10 @@ pre.prose .json-key { font-weight: 700; }
   .wrap { padding: 24px 16px 48px; }
   header { margin-bottom: 24px; padding-bottom: 14px; }
   .wordmark { font-size: 32px; }
-  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .card-name { font-size: 15px; }
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .card-name { font-size: 14px; }
+  .card-tag { display: none; }
+  .card-body { padding: 8px 10px 10px; }
   .output-frame { padding: 18px; }
   .card.active { box-shadow: 4px 4px 0 var(--red); }
 }

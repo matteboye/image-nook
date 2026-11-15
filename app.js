@@ -12,7 +12,7 @@
 
 'use strict';
 
-const VERSION = '2.1.0';
+const VERSION = '2.2.0';
 const AUTO_TEXT = 'chosen to suit the subject';
 const NO_SUBJECT = '[YOUR SUBJECT]';
 const ASPECTS = ['1:1', '4:5', '3:4', '2:3', '9:16', '4:3', '3:2', '16:9'];
@@ -144,7 +144,7 @@ const STYLES = [
   {
     key: 'riso', label: 'Riso Print', tagline: 'Chunky halftones, folk shapes',
     meta: ['3-4 ink layers', 'Halftone fills', 'Folk-art forms'],
-    thumb: 'images/thumbs/riso-print.webp', swatch: ['#2f5d3a', '#b5cf5a', '#e2574c', '#f5eddc'],
+    thumb: 'images/thumbs/riso-print-sq.webp', swatch: ['#2f5d3a', '#b5cf5a', '#e2574c', '#f5eddc'],
     ids: { subject: 'r-subject', aspect: 'r-aspect' }, aspect: '1:1',
     quick: ['r-palette', 'r-scene', 'r-typo'],
     always: ['r-palette', 'r-background', 'r-framing', 'r-scene', 'r-typo', 'r-mood'],
@@ -156,7 +156,7 @@ const STYLES = [
   {
     key: 'painterly', label: 'Cosy Painterly Scene', tagline: 'Gouache light, quiet moments',
     meta: ['Gouache & pastel', 'Soft golden light', 'Ghibli-adjacent'],
-    thumb: 'images/thumbs/cosy-painterly-scene.webp', swatch: ['#7d9a78', '#5f8f8f', '#f3e6c8', '#c9785a'],
+    thumb: 'images/thumbs/cosy-painterly-scene-sq.webp', swatch: ['#7d9a78', '#5f8f8f', '#f3e6c8', '#c9785a'],
     ids: { subject: 'p-subject', aspect: 'p-aspect' }, aspect: '9:16',
     quick: ['p-setting', 'p-time', 'p-palette'],
     always: ['p-palette', 'p-mood', 'p-framing'],
@@ -168,7 +168,7 @@ const STYLES = [
   {
     key: 'storybook', label: 'Cute Whimsical Storybook', tagline: 'Soft, round and gentle',
     meta: ['Chunky rounded forms', 'Pastel storybook palette', 'Soft chalky texture'],
-    thumb: 'images/thumbs/cute-whimsical-storybook.webp', swatch: ['#a9cfe8', '#a8c3a0', '#f8ecd4', '#f2b79a'],
+    thumb: 'images/thumbs/cute-whimsical-storybook-sq.webp', swatch: ['#a9cfe8', '#a8c3a0', '#f8ecd4', '#f2b79a'],
     ids: { subject: 's-subject', aspect: 's-aspect' }, aspect: '1:1',
     quick: ['s-setting', 's-weather', 's-palette'],
     always: ['s-palette', 's-lighting', 's-linework'],
@@ -195,7 +195,7 @@ const STYLES = [
   {
     key: 'retropop', label: 'Retro Pop Poster', tagline: 'Vintage ad, bold type',
     meta: ['1950s + 60s Japan', 'Halftone & misregister', 'Character-driven'],
-    thumb: 'images/thumbs/retro-pop-poster.webp', swatch: ['#f2edd7', '#1e3a8f', '#e63b2e', '#ffffff'],
+    thumb: 'images/thumbs/retro-pop-poster-sq.webp', swatch: ['#f2edd7', '#1e3a8f', '#e63b2e', '#ffffff'],
     ids: { subject: 'rp-subject', aspect: 'rp-aspect' }, aspect: '1:1',
     quick: ['rp-palette-preset', 'rp-era', 'rp-layout', 'rp-mascot'],
     always: ['rp-palette-preset', 'rp-era', 'rp-layout', 'rp-scene', 'rp-mascot', 'rp-motifs-group', 'rp-halftone-size', 'rp-badge-shape'],
@@ -220,7 +220,7 @@ const STYLES = [
   {
     key: 'retrokawaii', label: 'Retro Kawaii', tagline: 'Wobbly lines, bright stickers',
     meta: ['Bold chunky outlines', 'Halftone & grain', 'Cute chibi mascots'],
-    thumb: 'images/thumbs/retro-kawaii.webp', swatch: ['#e6332a', '#ffd23f', '#3fa7d6', '#f7f2e8', '#111111'],
+    thumb: 'images/thumbs/retro-kawaii-sq.webp', swatch: ['#e6332a', '#ffd23f', '#3fa7d6', '#f7f2e8', '#111111'],
     ids: { subject: 'rk-subject', aspect: 'rk-aspect' }, aspect: '1:1',
     quick: ['rk-color-mode', 'rk-palette', 'rk-layout', 'rk-background'],
     always: ['rk-color-mode', 'rk-palette', 'rk-accent', 'rk-layout', 'rk-background', 'rk-line-weight'],
@@ -234,7 +234,7 @@ const STYLES = [
   {
     key: 'whimsystamp', label: 'Whimsy Vintage Stamp', tagline: 'Tiny faded postage art',
     meta: ['Riso-printed postage', 'Mid-century Japanese', 'Storybook-cute'],
-    thumb: 'images/thumbs/whimsy-vintage-stamp.webp', swatch: ['#f3ead3', '#23345c', '#d9a0a0', '#9db59a', '#3d8b8b'],
+    thumb: 'images/thumbs/whimsy-vintage-stamp-sq.webp', swatch: ['#f3ead3', '#23345c', '#d9a0a0', '#9db59a', '#3d8b8b'],
     ids: { subject: 'ws-subject', aspect: 'ws-aspect' }, aspect: '4:5',
     quick: ['ws-palette', 'ws-bg-tone', 'ws-era', 'ws-edge'],
     always: ['ws-palette', 'ws-bg-tone', 'ws-era', 'ws-edge', 'ws-medium', 'ws-denomination', 'ws-denom-style'],
@@ -601,7 +601,7 @@ function highlightProse(str) {
 
 function swatchBanner(colours) {
   const stops = colours.map((c, i) => `${c} ${(i / colours.length) * 100}% ${((i + 1) / colours.length) * 100}%`).join(', ');
-  return el('span', { class: 'card-swatch', style: `background: linear-gradient(100deg, ${stops});`, 'aria-hidden': 'true' });
+  return el('span', { class: 'card-swatch', style: `background: linear-gradient(135deg, ${stops});`, 'aria-hidden': 'true' });
 }
 
 function renderCards() {
@@ -609,7 +609,7 @@ function renderCards() {
   wrap.textContent = '';
   STYLES.forEach((st, i) => {
     const banner = st.thumb
-      ? el('img', { class: 'card-img', src: st.thumb, alt: '', loading: i < 6 ? 'eager' : 'lazy', width: 900, height: 234 })
+      ? el('img', { class: 'card-img', src: st.thumb, alt: '', loading: i < 6 ? 'eager' : 'lazy', width: 480, height: 480 })
       : swatchBanner(st.swatch);
     const card = el('button', {
       type: 'button', class: 'card' + (st.key === state.style ? ' active' : ''), 'data-style': st.key,
