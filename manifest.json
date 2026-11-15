@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Image Nook",
-  "version": "1.11.0",
-  "description": "Generate structured JSON prompts across multiple illustration styles.",
+  "version": "2.0.0",
+  "description": "Pick a style, say what to draw, copy a ready-made prompt for any AI image tool.",
   "action": {
     "default_title": "Open Image Nook",
     "default_icon": {

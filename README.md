@@ -1,45 +1,45 @@
-# Image Nook — Chrome Extension
+# Image Nook
 
-Generates structured JSON prompts for image generation across multiple
-illustration styles. Currently supports:
+Pick a style, say what to draw, copy a ready-made prompt. Works with Gemini,
+ChatGPT, Midjourney or any other AI image tool.
 
-1. **Riso Print** — risograph screen-print, halftone-heavy folk illustration
-2. **Cosy Painterly Scene** — gouache/pastel, golden-hour, Ghibli-adjacent
+It is a plain web page: open the GitHub Pages link and bookmark it. Nothing to
+install, and updates appear on the next visit.
 
-Each style has its own tab. Each field has a "Custom..." option that reveals
-a text input so you can override any preset.
+## Using it
 
-## Install (Developer Mode)
+1. **Pick a style** card.
+2. **Say what to draw** (and, for styles with lettering, any words to show).
+3. **Copy**, or copy and open Gemini / ChatGPT in one click, then paste.
 
-1. Unzip the folder somewhere permanent (don't delete it — Chrome loads from this folder).
-2. Open Chrome and go to `chrome://extensions`
-3. Toggle **Developer mode** on (top-right).
-4. Click **Load unpacked** and select the unzipped `image-nook` folder.
-5. Click the puzzle-piece icon in your toolbar and pin "Image Nook".
-6. Click the icon — the tool opens in a new tab.
+Optional extras:
 
-## Updating
+- **Tweak the look** - a few click-to-pick chips per style, plus "All options"
+  for everything the style supports. Every option has a Custom choice.
+- **Save as recipe** - keeps a set of tweaks as a one-click button. Recipes are
+  stored in your own browser, so each person has their own.
+- **Plain prompt / JSON** - plain paragraphs by default; JSON is the structured
+  version of the same prompt.
 
-Replace the folder contents with the new files, then hit the refresh icon on
-the extension card at `chrome://extensions`.
-
-## File layout
+## Files
 
 ```
-image-nook/
-├── manifest.json     ← extension config (v1.1.1)
-├── background.js     ← opens the tool in a new tab on icon click
-├── index.html        ← the UI (two tabs, two forms, one output panel)
-├── styles.css        ← all styling
-├── app.js            ← style registry + tab logic
-└── icons/
-    ├── icon-16.png
-    ├── icon-48.png
-    └── icon-128.png  ← swap these for your own branding
+index.html     page markup
+styles.css     all styling
+fields.js      every option for the original ten styles
+builders.js    JSON builders for the original ten styles
+app.js         style registry, newer styles, plain-prompt writer, UI
+images/thumbs  small card banners (made from images/heroes)
+manifest.json, background.js, icons/   lets the same folder load as a Chrome extension
 ```
 
-## Adding a third style later
+## Adding a style
 
-In `app.js`, add a new entry to the `STYLES` registry and a corresponding
-`buildXJSON()` function. In `index.html`, add a tab button and a matching
-`.tab-panel` form. The wire-up handles the rest.
+In `app.js`, add the style's options to `NEW_FIELDS` and one entry to `STYLES`
+(name, tagline, swatch colours, the locked look, quick-tweak ids, avoid list).
+The card, chips, plain prompt and JSON all come from that entry.
+
+## Still works as a Chrome extension
+
+Load the folder unpacked at `chrome://extensions` (Developer mode) and the
+toolbar icon opens the same page.
