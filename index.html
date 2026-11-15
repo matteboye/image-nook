@@ -23,17 +23,35 @@
 
   <!-- STEP 1 -->
   <section class="step-block" aria-labelledby="step1">
-    <h2 class="step-title" id="step1"><span class="step-num">1</span> Pick a style</h2>
+    <div class="step-head">
+      <h2 class="step-title" id="step1"><span class="step-num">1</span> Pick a style</h2>
+      <button type="button" class="style-toggle" id="styleToggle" aria-expanded="false" aria-controls="stylePicker">
+        <span class="style-toggle-thumb" id="toggleThumb"></span>
+        <span class="style-toggle-name" id="toggleName"></span>
+        <span class="style-toggle-action" id="toggleAction">Change style</span>
+      </button>
+    </div>
     <div class="recipes" id="recipes" hidden></div>
-    <div class="cards" id="cards"></div>
+    <div id="stylePicker" hidden>
+      <div class="cards" id="cards"></div>
+    </div>
   </section>
 
   <div class="layout">
 
+    <!-- EXAMPLE OF THE PICKED STYLE -->
+    <aside class="preview-col" aria-label="Example of the picked style">
+      <button type="button" class="preview-btn" id="previewBtn" aria-label="Enlarge the example image">
+        <img id="previewImg" alt="" width="1024" height="1024">
+      </button>
+      <p class="preview-name" id="previewName"></p>
+      <p class="meta" id="meta" aria-live="polite"></p>
+      <p class="hint" id="previewHint">Example: a fox holding a teacup, with the default settings. Click the picture to enlarge it.</p>
+    </aside>
+
     <!-- STEP 2 -->
     <section class="make-col" id="make" aria-labelledby="step2">
       <h2 class="step-title" id="step2"><span class="step-num">2</span> Say what to draw</h2>
-      <p class="meta" id="meta" aria-live="polite"></p>
 
       <div class="panel">
         <div class="field">
@@ -108,6 +126,11 @@
     <span>Prompts are made in your browser. Nothing you type is sent anywhere.</span>
   </footer>
 </div>
+
+<dialog class="lightbox" id="lightbox" aria-label="Example image">
+  <img id="lightboxImg" alt="">
+  <form method="dialog"><button class="btn" autofocus>Close</button></form>
+</dialog>
 
 <script src="fields.js"></script>
 <script src="builders.js"></script>

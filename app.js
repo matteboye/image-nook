@@ -12,7 +12,7 @@
 
 'use strict';
 
-const VERSION = '2.2.0';
+const VERSION = '2.3.0';
 const AUTO_TEXT = 'chosen to suit the subject';
 const NO_SUBJECT = '[YOUR SUBJECT]';
 const ASPECTS = ['1:1', '4:5', '3:4', '2:3', '9:16', '4:3', '3:2', '16:9'];
@@ -144,7 +144,7 @@ const STYLES = [
   {
     key: 'riso', label: 'Riso Print', tagline: 'Chunky halftones, folk shapes',
     meta: ['3-4 ink layers', 'Halftone fills', 'Folk-art forms'],
-    thumb: 'images/thumbs/riso-print-sq.webp', swatch: ['#2f5d3a', '#b5cf5a', '#e2574c', '#f5eddc'],
+    swatch: ['#2f5d3a', '#b5cf5a', '#e2574c', '#f5eddc'],
     ids: { subject: 'r-subject', aspect: 'r-aspect' }, aspect: '1:1',
     quick: ['r-palette', 'r-scene', 'r-typo'],
     always: ['r-palette', 'r-background', 'r-framing', 'r-scene', 'r-typo', 'r-mood'],
@@ -156,7 +156,7 @@ const STYLES = [
   {
     key: 'painterly', label: 'Cosy Painterly Scene', tagline: 'Gouache light, quiet moments',
     meta: ['Gouache & pastel', 'Soft golden light', 'Ghibli-adjacent'],
-    thumb: 'images/thumbs/cosy-painterly-scene-sq.webp', swatch: ['#7d9a78', '#5f8f8f', '#f3e6c8', '#c9785a'],
+    swatch: ['#7d9a78', '#5f8f8f', '#f3e6c8', '#c9785a'],
     ids: { subject: 'p-subject', aspect: 'p-aspect' }, aspect: '9:16',
     quick: ['p-setting', 'p-time', 'p-palette'],
     always: ['p-palette', 'p-mood', 'p-framing'],
@@ -168,7 +168,7 @@ const STYLES = [
   {
     key: 'storybook', label: 'Cute Whimsical Storybook', tagline: 'Soft, round and gentle',
     meta: ['Chunky rounded forms', 'Pastel storybook palette', 'Soft chalky texture'],
-    thumb: 'images/thumbs/cute-whimsical-storybook-sq.webp', swatch: ['#a9cfe8', '#a8c3a0', '#f8ecd4', '#f2b79a'],
+    swatch: ['#a9cfe8', '#a8c3a0', '#f8ecd4', '#f2b79a'],
     ids: { subject: 's-subject', aspect: 's-aspect' }, aspect: '1:1',
     quick: ['s-setting', 's-weather', 's-palette'],
     always: ['s-palette', 's-lighting', 's-linework'],
@@ -182,7 +182,7 @@ const STYLES = [
   {
     key: 'kawaii', label: 'Kawaii Punk Pop', tagline: 'Y2K cute with an edge',
     meta: ['Y2K kawaii punk', 'Flat block colour', 'Sticker-sheet feel'],
-    thumb: null, swatch: ['#8fd19e', '#f7a8c4', '#f7f2e8', '#2a241f', '#ffd447'],
+    swatch: ['#8fd19e', '#f7a8c4', '#f7f2e8', '#2a241f', '#ffd447'],
     ids: { subject: 'k-subject', aspect: 'k-aspect' }, aspect: '1:1',
     quick: ['k-scheme', 'k-mood', 'k-bg-type', 'k-composition'],
     always: ['k-scheme', 'k-mood', 'k-bg-type', 'k-composition', 'k-line-weight', 'k-motifs'],
@@ -195,7 +195,7 @@ const STYLES = [
   {
     key: 'retropop', label: 'Retro Pop Poster', tagline: 'Vintage ad, bold type',
     meta: ['1950s + 60s Japan', 'Halftone & misregister', 'Character-driven'],
-    thumb: 'images/thumbs/retro-pop-poster-sq.webp', swatch: ['#f2edd7', '#1e3a8f', '#e63b2e', '#ffffff'],
+    swatch: ['#f2edd7', '#1e3a8f', '#e63b2e', '#ffffff'],
     ids: { subject: 'rp-subject', aspect: 'rp-aspect' }, aspect: '1:1',
     quick: ['rp-palette-preset', 'rp-era', 'rp-layout', 'rp-mascot'],
     always: ['rp-palette-preset', 'rp-era', 'rp-layout', 'rp-scene', 'rp-mascot', 'rp-motifs-group', 'rp-halftone-size', 'rp-badge-shape'],
@@ -220,7 +220,7 @@ const STYLES = [
   {
     key: 'retrokawaii', label: 'Retro Kawaii', tagline: 'Wobbly lines, bright stickers',
     meta: ['Bold chunky outlines', 'Halftone & grain', 'Cute chibi mascots'],
-    thumb: 'images/thumbs/retro-kawaii-sq.webp', swatch: ['#e6332a', '#ffd23f', '#3fa7d6', '#f7f2e8', '#111111'],
+    swatch: ['#e6332a', '#ffd23f', '#3fa7d6', '#f7f2e8', '#111111'],
     ids: { subject: 'rk-subject', aspect: 'rk-aspect' }, aspect: '1:1',
     quick: ['rk-color-mode', 'rk-palette', 'rk-layout', 'rk-background'],
     always: ['rk-color-mode', 'rk-palette', 'rk-accent', 'rk-layout', 'rk-background', 'rk-line-weight'],
@@ -234,7 +234,7 @@ const STYLES = [
   {
     key: 'whimsystamp', label: 'Whimsy Vintage Stamp', tagline: 'Tiny faded postage art',
     meta: ['Riso-printed postage', 'Mid-century Japanese', 'Storybook-cute'],
-    thumb: 'images/thumbs/whimsy-vintage-stamp-sq.webp', swatch: ['#f3ead3', '#23345c', '#d9a0a0', '#9db59a', '#3d8b8b'],
+    swatch: ['#f3ead3', '#23345c', '#d9a0a0', '#9db59a', '#3d8b8b'],
     ids: { subject: 'ws-subject', aspect: 'ws-aspect' }, aspect: '4:5',
     quick: ['ws-palette', 'ws-bg-tone', 'ws-era', 'ws-edge'],
     always: ['ws-palette', 'ws-bg-tone', 'ws-era', 'ws-edge', 'ws-medium', 'ws-denomination', 'ws-denom-style'],
@@ -247,7 +247,7 @@ const STYLES = [
   {
     key: 'diecut', label: 'Cute Die-Cut Sticker', tagline: 'Bold outline, white border',
     meta: ['Die-cut vinyl sticker', 'Bold black outlines', 'Candy pastel pops'],
-    thumb: null, swatch: ['#f9c6d4', '#c9b8f0', '#bfe6d0', '#ff4fa0', '#ffffff'],
+    swatch: ['#f9c6d4', '#c9b8f0', '#bfe6d0', '#ff4fa0', '#ffffff'],
     ids: { subject: 'ds-subject', aspect: 'ds-aspect' }, aspect: '1:1',
     quick: ['ds-bg', 'ds-texture', 'ds-lettering-style'],
     always: ['ds-bg', 'ds-texture'],
@@ -260,7 +260,7 @@ const STYLES = [
   {
     key: 'cosmicfolk', label: 'Psychadelic Cosmic Folk-Art', tagline: 'Occult kitsch, candy neon',
     meta: ['Mid-century occult kitsch', 'Psychedelic candy neon', 'Flat poster clarity'],
-    thumb: null, swatch: ['#3a1f5c', '#e7a6c5', '#b7e33b', '#ff3fa4', '#ffb347'],
+    swatch: ['#3a1f5c', '#e7a6c5', '#b7e33b', '#ff3fa4', '#ffb347'],
     ids: { subject: 'pc-subject', aspect: 'pc-aspect' }, aspect: '2:3',
     quick: ['pc-setting', 'pc-story-beat', 'pc-mode', 'pc-symmetry'],
     always: ['pc-mode', 'pc-setting', 'pc-story-beat', 'pc-motifs-group', 'pc-symmetry', 'pc-scale'],
@@ -273,7 +273,7 @@ const STYLES = [
   {
     key: 'akiramanga', label: 'Retro Akira Manga', tagline: '80s manga colour plates',
     meta: ['Toriyama colour plates', 'Chibi retro-futurism', 'Faded vintage print'],
-    thumb: null, swatch: ['#a8b58a', '#c9673f', '#f1e6cc', '#6fa3a0', '#1d1a17'],
+    swatch: ['#a8b58a', '#c9673f', '#f1e6cc', '#6fa3a0', '#1d1a17'],
     ids: { subject: 'am-subject', aspect: 'am-aspect' }, aspect: '1:1',
     quick: ['am-colour-mode', 'am-backdrop', 'am-energy'],
     always: ['am-colour-mode', 'am-backdrop', 'am-energy'],
@@ -287,7 +287,7 @@ const STYLES = [
   {
     key: 'linocut', label: 'Linocut Block Print', tagline: 'Carved lines, inky texture', isNew: true,
     meta: ['Hand-carved relief print', 'Gouge-mark shading', 'High contrast'],
-    thumb: null, swatch: ['#1d1a17', '#f1e6cc', '#a8442f', '#2f4a3a'],
+    swatch: ['#1d1a17', '#f1e6cc', '#a8442f', '#2f4a3a'],
     ids: {}, aspect: '4:5',
     quick: ['lc-ink', 'lc-border', 'lc-scene'],
     always: ['lc-ink', 'lc-border'],
@@ -305,7 +305,7 @@ const STYLES = [
   {
     key: 'colouring', label: 'Colouring Book Page', tagline: 'Clean outlines to colour in', isNew: true,
     meta: ['Black outlines only', 'Closed shapes', 'Print-ready white'],
-    thumb: null, swatch: ['#ffffff', '#1d1a17', '#ffffff', '#1d1a17', '#ffffff'],
+    swatch: ['#ffffff', '#1d1a17', '#ffffff', '#1d1a17', '#ffffff'],
     ids: {}, aspect: '3:4',
     quick: ['cb-detail', 'cb-line', 'cb-background', 'cb-vibe'],
     always: ['cb-detail', 'cb-line', 'cb-background', 'cb-vibe'],
@@ -323,7 +323,7 @@ const STYLES = [
   {
     key: 'tarot', label: 'Mystic Tarot Card', tagline: 'Ornate borders, symbols', isNew: true,
     meta: ['Vintage card deck', 'Inked + flat colour', 'Symbolic staging'],
-    thumb: null, swatch: ['#1f2a4d', '#d9a441', '#f1e6cc', '#a8442f', '#7d9a78'],
+    swatch: ['#1f2a4d', '#d9a441', '#f1e6cc', '#a8442f', '#7d9a78'],
     ids: {}, aspect: '4:7',
     quick: ['tc-palette', 'tc-border', 'tc-symbols'],
     always: ['tc-palette', 'tc-border', 'tc-numeral'],
@@ -341,7 +341,7 @@ const STYLES = [
   {
     key: 'pixel', label: 'Cosy Pixel Art', tagline: 'Crisp 16-bit cosiness', isNew: true,
     meta: ['Hard-edged pixels', 'Limited palette', '16-bit game feel'],
-    thumb: null, swatch: ['#f3e6c8', '#c9785a', '#7d9a78', '#6b4f3a', '#2b2d42'],
+    swatch: ['#f3e6c8', '#c9785a', '#7d9a78', '#6b4f3a', '#2b2d42'],
     ids: {}, aspect: '1:1',
     quick: ['px-res', 'px-palette', 'px-view'],
     always: ['px-res', 'px-palette', 'px-view', 'px-outline'],
@@ -608,9 +608,9 @@ function renderCards() {
   const wrap = $('cards');
   wrap.textContent = '';
   STYLES.forEach((st, i) => {
-    const banner = st.thumb
-      ? el('img', { class: 'card-img', src: st.thumb, alt: '', loading: i < 6 ? 'eager' : 'lazy', width: 480, height: 480 })
-      : swatchBanner(st.swatch);
+    const banner = el('img', { class: 'card-img', src: `images/thumbs/${st.key}.webp`, alt: '', loading: 'lazy', width: 320, height: 320 });
+    // No example picture yet for this style: fall back to its colour stripes
+    banner.addEventListener('error', () => banner.replaceWith(swatchBanner(st.swatch)));
     const card = el('button', {
       type: 'button', class: 'card' + (st.key === state.style ? ' active' : ''), 'data-style': st.key,
       'aria-pressed': st.key === state.style ? 'true' : 'false',
@@ -805,8 +805,18 @@ function renderTweaks() {
 
 function renderStylePanel() {
   const st = active();
-  const traits = st.meta.map(m => (/^(Ghibli|Toriyama|Y2K|Japan)/.test(m) ? m : lowerFirst(m)));
-  $('meta').innerHTML = `<strong>${escapeHTML(st.label)}</strong>: ${escapeHTML(traits.join(', '))}.`;
+  const traits = st.meta.map(m => (/^(Ghibli|Toriyama|Y2K|Japan)/.test(m) ? m : lowerFirst(m))).join(', ');
+  $('meta').textContent = traits.charAt(0).toUpperCase() + traits.slice(1) + '.';
+  $('previewName').textContent = st.label;
+  $('toggleName').textContent = st.label;
+  const thumb = el('img', { src: `images/thumbs/${st.key}.webp`, alt: '', width: 40, height: 40 });
+  thumb.addEventListener('error', () => thumb.replaceWith(swatchBanner(st.swatch)));
+  $('toggleThumb').replaceChildren(thumb);
+  const big = $('previewImg');
+  $('previewBtn').hidden = false; $('previewHint').hidden = false;
+  big.onerror = () => { $('previewBtn').hidden = true; $('previewHint').hidden = true; };
+  big.src = `images/examples/${st.key}.webp`;
+  big.alt = `Example image in the ${st.label} style`;
 
   const eg = FIELD_BY_ID[st.ids.subject];
   $('subject').placeholder = eg && eg.def ? `e.g. ${eg.def.charAt(0).toLowerCase() + eg.def.slice(1)}` : 'e.g. a sleepy fox curled in a teacup';
@@ -822,9 +832,17 @@ function renderStylePanel() {
   renderTweaks();
 }
 
+// The style cards fold away once a style is picked, so the input sits near the top
+function setPicker(open) {
+  $('stylePicker').hidden = !open;
+  $('styleToggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+  $('toggleAction').textContent = open ? 'Hide styles' : 'Change style';
+}
+
 function pickStyle(key, scroll) {
   if (!STYLE_BY_KEY[key]) return;
   state.style = key;
+  if (scroll) setPicker(false);
   store.set('nook.last', { style: key, format: state.format });
   document.querySelectorAll('.card').forEach(c => {
     const on = c.dataset.style === key;
@@ -908,6 +926,14 @@ function init() {
   state.recipes = store.get('nook.recipes', []).filter(r => r && STYLE_BY_KEY[r.style]);
 
   $('version').textContent = 'v' + VERSION;
+  setPicker(!last.style);          // first visit: show every style; after that, start folded
+  $('styleToggle').addEventListener('click', () => setPicker($('stylePicker').hidden));
+  $('previewBtn').addEventListener('click', () => {
+    $('lightboxImg').src = $('previewImg').src;
+    $('lightboxImg').alt = $('previewImg').alt;
+    $('lightbox').showModal();
+  });
+  $('lightbox').addEventListener('click', (e) => { if (e.target === $('lightbox')) $('lightbox').close(); });
   renderCards();
   renderRecipes();
   renderStylePanel();
