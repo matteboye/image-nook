@@ -21,21 +21,16 @@
     <p class="strapline">Pick a style, say what to draw, copy the prompt.</p>
   </header>
 
-  <!-- STEP 1 -->
-  <section class="step-block" aria-labelledby="step1">
-    <div class="step-head">
-      <h2 class="step-title" id="step1"><span class="step-num">1</span> Pick a style</h2>
-      <button type="button" class="style-toggle" id="styleToggle" aria-expanded="false" aria-controls="stylePicker">
-        <span class="style-toggle-thumb" id="toggleThumb"></span>
-        <span class="style-toggle-name" id="toggleName"></span>
-        <span class="style-toggle-action" id="toggleAction">Change style</span>
-      </button>
-    </div>
+  <!-- SPLASH: every style -->
+  <section class="step-block" id="gallery" aria-labelledby="step1">
+    <h2 class="step-title" id="step1"><span class="step-num">1</span> Pick a style</h2>
     <div class="recipes" id="recipes" hidden></div>
-    <div id="stylePicker" hidden>
-      <div class="cards" id="cards"></div>
-    </div>
+    <nav class="cards" id="cards" aria-label="Styles"></nav>
   </section>
+
+  <!-- ONE STYLE: example, what to draw, prompt -->
+  <div id="styleView" hidden>
+  <a class="back" href="#">All styles</a>
 
   <div class="layout">
 
@@ -46,7 +41,7 @@
       </button>
       <p class="preview-name" id="previewName"></p>
       <p class="meta" id="meta" aria-live="polite"></p>
-      <p class="hint" id="previewHint">Example: a fox holding a teacup, with the default settings. Click the picture to enlarge it.</p>
+      <p class="hint" id="previewHint">Example: a fox holding a teacup, with the default settings. Tap or click the picture to enlarge it.</p>
     </aside>
 
     <!-- STEP 2 -->
@@ -119,6 +114,7 @@
       </div>
     </section>
 
+  </div>
   </div>
 
   <footer class="foot">

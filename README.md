@@ -8,7 +8,9 @@ install, and updates appear on the next visit.
 
 ## Using it
 
-1. **Pick a style** card.
+1. **Pick a style** on the opening page, which shows every style with an example.
+   The style then opens on its own page; "All styles" or the browser's Back
+   button returns to the full set.
 2. **Say what to draw** (and, for styles with lettering, any words to show).
 3. **Copy**, or copy and open Gemini / ChatGPT in one click, then paste.
 

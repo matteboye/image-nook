@@ -84,30 +84,32 @@ header {
   flex-shrink: 0;
 }
 
-.step-head { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 20px; margin-bottom: 14px; }
-.step-head .step-title { margin-bottom: 0; }
+#gallery[hidden], #styleView[hidden] { display: none; }
 
-.style-toggle {
+.back {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: var(--yellow);
   color: var(--ink);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
   border: 2px solid var(--ink);
   border-radius: var(--radius);
-  font-family: inherit;
-  padding: 4px 14px 4px 4px;
-  min-height: 48px;
-  cursor: pointer;
-  text-align: left;
+  padding: 8px 16px 8px 14px;
+  min-height: 44px;
+  margin-bottom: 28px;
 }
-.style-toggle:hover { box-shadow: 3px 3px 0 var(--red); }
-.style-toggle-thumb { width: 40px; height: 40px; border-radius: 8px; overflow: hidden; flex-shrink: 0; display: block; }
-.style-toggle-thumb img, .style-toggle-thumb .card-swatch { width: 100%; height: 100%; object-fit: cover; display: block; }
-.style-toggle-name { font-family: var(--display); font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
-.style-toggle-action { font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-
-#stylePicker[hidden] { display: none; }
+.back::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-left: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  transform: rotate(45deg);
+  margin-left: 3px;
+}
+.back:hover { background: var(--yellow); }
 
 /* ============ EXAMPLE PREVIEW ============ */
 .preview-col { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
@@ -141,7 +143,7 @@ header {
 .lightbox form { display: flex; justify-content: flex-end; margin-top: 10px; }
 
 /* ============ FOCUS ============ */
-.card:focus-visible, .chip:focus-visible, .btn:focus-visible, .format-btn:focus-visible,
+.card:focus-visible, .back:focus-visible, .chip:focus-visible, .btn:focus-visible, .format-btn:focus-visible,
 .actions button:focus-visible, .recipe button:focus-visible, summary:focus-visible, pre:focus-visible,
 input:focus-visible, textarea:focus-visible, select:focus-visible {
   outline: 3px solid var(--red);
@@ -160,6 +162,7 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
   display: flex;
   flex-direction: column;
   text-align: left;
+  text-decoration: none;
   background: var(--paper);
   color: var(--ink);
   border: 2px solid var(--ink);
@@ -169,7 +172,8 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
   font-family: inherit;
   transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
-.card:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+.card:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--red); background: var(--yellow); }
+.card:hover .card-tag { color: var(--ink); }
 .card:active { transform: none; box-shadow: none; }
 
 .card-banner {
@@ -187,8 +191,6 @@ input:focus-visible, textarea:focus-visible, select:focus-visible {
 .card-name { font-family: var(--display); font-weight: 600; font-size: 16px; line-height: 1.2; }
 .card-tag { font-size: 13px; color: var(--ink-soft); }
 
-.card.active { background: var(--yellow); box-shadow: 5px 5px 0 var(--red); transform: none; }
-.card.active .card-tag { color: var(--ink); }
 
 .card-new {
   position: absolute;
@@ -530,6 +532,7 @@ pre.prose .json-key { font-weight: 700; }
 /* ============ SMALL SCREENS + MOTION ============ */
 @media (max-width: 768px) {
   .wrap { padding: 24px 16px 48px; }
+  .back { margin-bottom: 20px; }
   header { margin-bottom: 24px; padding-bottom: 14px; }
   .wordmark { font-size: 32px; }
   .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
@@ -537,7 +540,6 @@ pre.prose .json-key { font-weight: 700; }
   .card-tag { display: none; }
   .card-body { padding: 8px 10px 10px; }
   .output-frame { padding: 18px; }
-  .card.active { box-shadow: 4px 4px 0 var(--red); }
   .preview-col { grid-template-columns: 120px minmax(0, 1fr); column-gap: 14px; }
   .preview-name { font-size: 18px; margin-top: 0; }
   .step-block { margin-bottom: 28px; }

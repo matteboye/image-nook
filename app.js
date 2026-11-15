@@ -12,7 +12,7 @@
 
 'use strict';
 
-const VERSION = '2.3.0';
+const VERSION = '2.4.0';
 const AUTO_TEXT = 'chosen to suit the subject';
 const NO_SUBJECT = '[YOUR SUBJECT]';
 const ASPECTS = ['1:1', '4:5', '3:4', '2:3', '9:16', '4:3', '3:2', '16:9'];
@@ -611,11 +611,7 @@ function renderCards() {
     const banner = el('img', { class: 'card-img', src: `images/thumbs/${st.key}.webp`, alt: '', loading: 'lazy', width: 320, height: 320 });
     // No example picture yet for this style: fall back to its colour stripes
     banner.addEventListener('error', () => banner.replaceWith(swatchBanner(st.swatch)));
-    const card = el('button', {
-      type: 'button', class: 'card' + (st.key === state.style ? ' active' : ''), 'data-style': st.key,
-      'aria-pressed': st.key === state.style ? 'true' : 'false',
-      onclick: () => pickStyle(st.key, true)
-    }, [
+    const card = el('a', { class: 'card', href: '#' + st.key, 'data-style': st.key }, [
       el('span', { class: 'card-banner' }, [banner]),
       el('span', { class: 'card-body' }, [
         el('span', { class: 'card-name', text: st.label }),
@@ -654,7 +650,7 @@ function applyRecipe(r) {
   Object.assign(state.customs, r.customs || {});
   state.aspect = r.aspect || null;
   state.aspectCustom = r.aspectCustom || '';
-  pickStyle(r.style, true);
+  openStyle(r.style);
 }
 
 function saveRecipe() {
@@ -808,10 +804,6 @@ function renderStylePanel() {
   const traits = st.meta.map(m => (/^(Ghibli|Toriyama|Y2K|Japan)/.test(m) ? m : lowerFirst(m))).join(', ');
   $('meta').textContent = traits.charAt(0).toUpperCase() + traits.slice(1) + '.';
   $('previewName').textContent = st.label;
-  $('toggleName').textContent = st.label;
-  const thumb = el('img', { src: `images/thumbs/${st.key}.webp`, alt: '', width: 40, height: 40 });
-  thumb.addEventListener('error', () => thumb.replaceWith(swatchBanner(st.swatch)));
-  $('toggleThumb').replaceChildren(thumb);
   const big = $('previewImg');
   $('previewBtn').hidden = false; $('previewHint').hidden = false;
   big.onerror = () => { $('previewBtn').hidden = true; $('previewHint').hidden = true; };
@@ -832,28 +824,36 @@ function renderStylePanel() {
   renderTweaks();
 }
 
-// The style cards fold away once a style is picked, so the input sits near the top
-function setPicker(open) {
-  $('stylePicker').hidden = !open;
-  $('styleToggle').setAttribute('aria-expanded', open ? 'true' : 'false');
-  $('toggleAction').textContent = open ? 'Hide styles' : 'Change style';
+// Two screens: the splash with every style, and one style's form.
+// The address keeps track (.../#riso), so the browser's Back button returns
+// to the splash and a single style can be bookmarked.
+function openStyle(key) {
+  if (decodeURIComponent(location.hash.slice(1)) === key) route(); else location.hash = key;
 }
 
-function pickStyle(key, scroll) {
-  if (!STYLE_BY_KEY[key]) return;
-  state.style = key;
-  if (scroll) setPicker(false);
-  store.set('nook.last', { style: key, format: state.format });
-  document.querySelectorAll('.card').forEach(c => {
-    const on = c.dataset.style === key;
-    c.classList.toggle('active', on); c.setAttribute('aria-pressed', on ? 'true' : 'false');
-  });
-  renderStylePanel();
-  update();
-  // On a phone the cards fill the screen, so bring the next step into view
-  if (scroll && window.matchMedia('(max-width: 980px)').matches) {
-    $('make').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+// The subject box grows with what you type, so it never needs a scrollbar
+function fitSubject() {
+  const t = $('subject');
+  t.style.height = 'auto';
+  t.style.height = t.scrollHeight + 'px';
+}
+
+function route() {
+  const key = decodeURIComponent(location.hash.slice(1));
+  const inStyle = !!STYLE_BY_KEY[key];
+  $('gallery').hidden = inStyle;
+  $('styleView').hidden = !inStyle;
+  if (inStyle) {
+    state.style = key;
+    store.set('nook.last', { style: key, format: state.format });
+    renderStylePanel();
+    update();
+    fitSubject();
+    // With a mouse and keyboard, land ready to type; on a phone, leave the keyboard down
+    if (window.innerWidth > 980 && window.matchMedia('(hover: hover) and (pointer: fine)').matches) $('subject').focus({ preventScroll: true });
   }
+  document.title = inStyle ? `${STYLE_BY_KEY[key].label} - Image Nook` : 'Image Nook';
+  window.scrollTo(0, 0);
 }
 
 // ------------------------------------------------------------
@@ -926,8 +926,6 @@ function init() {
   state.recipes = store.get('nook.recipes', []).filter(r => r && STYLE_BY_KEY[r.style]);
 
   $('version').textContent = 'v' + VERSION;
-  setPicker(!last.style);          // first visit: show every style; after that, start folded
-  $('styleToggle').addEventListener('click', () => setPicker($('stylePicker').hidden));
   $('previewBtn').addEventListener('click', () => {
     $('lightboxImg').src = $('previewImg').src;
     $('lightboxImg').alt = $('previewImg').alt;
@@ -939,12 +937,11 @@ function init() {
   renderStylePanel();
   update();
 
-  // The subject box grows with what you type, so it never needs a scrollbar
-  const fitSubject = () => { const t = $('subject'); t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; };
   $('subject').addEventListener('input', (e) => { state.subject = e.target.value; fitSubject(); update(); });
   window.addEventListener('resize', fitSubject);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitSubject);
-  fitSubject();
+  window.addEventListener('hashchange', route);
+  route();
   $('subject').addEventListener('keydown', (e) => {
     if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); copyFrom($('copyBtn')); }
   });
